@@ -99,10 +99,14 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie("jwt-linkedin");
+  res.clearCookie("jwt-linkedin", {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    path: "/",
+  });
   res.json({ message: "Logged out successfully" });
 };
-
 export const getCurrentUser = async (req, res) => {
   try {
     res.json(req.user);
