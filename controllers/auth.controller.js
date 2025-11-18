@@ -46,7 +46,7 @@ export const signup = async (req, res) => {
       httpOnly: true, // prevent XSS attack
       maxAge: 3 * 24 * 60 * 60 * 1000,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production", // prevents man-in-the-middle attacks
+      secure: true,
     });
 
     res.status(201).json({ message: "User registered successfully" });
@@ -88,7 +88,7 @@ export const login = async (req, res) => {
       httpOnly: true,
       maxAge: 3 * 24 * 60 * 60 * 1000,
       sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
 
     res.json({ message: "Logged in successfully" });
