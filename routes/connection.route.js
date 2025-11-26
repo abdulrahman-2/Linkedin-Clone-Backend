@@ -1,18 +1,20 @@
 import express from "express";
 import { protectRoute } from "../middleware/auth.middleware.js";
 import {
-	acceptConnectionRequest,
-	getConnectionRequests,
-	getConnectionStatus,
-	getUserConnections,
-	rejectConnectionRequest,
-	removeConnection,
-	sendConnectionRequest,
+  acceptConnectionRequest,
+  getConnectionRequests,
+  getConnectionStatus,
+  getUserConnections,
+  cancelConnectionRequest,
+  rejectConnectionRequest,
+  removeConnection,
+  sendConnectionRequest,
 } from "../controllers/connection.controller.js";
 
 const router = express.Router();
 
 router.post("/request/:userId", protectRoute, sendConnectionRequest);
+router.delete("/request/:userId", protectRoute, cancelConnectionRequest);
 router.put("/accept/:requestId", protectRoute, acceptConnectionRequest);
 router.put("/reject/:requestId", protectRoute, rejectConnectionRequest);
 // Get all connection requests for the current user
